@@ -2,7 +2,7 @@ const addForm = document.querySelector(".add");
 const list = document.querySelector(".todos");
 const search = document.querySelector(".search input");
 
-const generateTemplate = todo => {
+const addTodo = todo => {
   const html = `
     <li class="list-group-item d-flex justify-content-between align-items-center text-light">
       <span>${todo}</span>
@@ -17,12 +17,12 @@ addForm.addEventListener("submit", e => {
 
   const todo = addForm.add.value.trim();
   if (todo.length) {
-    generateTemplate(todo);
+    addTodo(todo);
     addForm.reset();
   }
 });
 
-// delete todos
+// delete todo
 list.addEventListener("click", e => {
   if (e.target.classList.contains("delete")) {
     e.target.parentElement.remove();
@@ -39,7 +39,6 @@ const filterTodos = term => {
     .forEach((todo) => todo.classList.remove("filtered"));
 };
 
-// keyup event
 search.addEventListener("keyup", () => {
   const term = search.value.trim().toLowerCase();
   filterTodos(term);
